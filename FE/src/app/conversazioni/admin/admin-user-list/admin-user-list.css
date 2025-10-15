@@ -1,0 +1,79 @@
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #2c3e50;
+    margin-bottom: 0px;
+  }
+  
+  .tabella {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .tabella th {
+    background: #34495e;
+    color: white;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .tabella td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .tabella tr:hover {
+    background: #f8f9fa;
+  }
+  
+  .stato-attivo {
+    background: #d4edda;
+    color: #155724;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+  
+  .stato-bloccato {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+  
+  button {
+    margin: 0 5px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .btn-blocca {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .btn-sblocca {
+    background: #28a745;
+    color: white;
+  }
+  
+  .btn-ordini {
+    background: #007bff;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }

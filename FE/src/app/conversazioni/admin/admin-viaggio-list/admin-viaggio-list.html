@@ -1,0 +1,47 @@
+<div class="admin-container">
+  <div class="header">
+    <h1>🧭 Gestione Viaggi</h1>
+    <button (click)="aggiutoViaggio()" class="btn-nuovo">
+      + Nuovo Viaggio
+    </button>
+  </div>
+
+  <table class="tabella">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titolo</th>
+        <th>Destinazione</th>
+        <th>Partenza</th>
+        <th>Ritorno</th>
+        <th>Prezzo (€)</th>
+        <th>Posti</th>
+        <th>Categoria</th>
+        <th>Stato</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let viaggio of viaggi">
+        <td>{{ viaggio.id_viaggio }}</td>
+        <td>{{ viaggio.titolo }}</td>
+        <td>{{ viaggio.destinazione }} <small *ngIf="viaggio.stato_destinazione">({{ viaggio.stato_destinazione }})</small></td>
+        <td>{{ viaggio.partenza | date:'dd/MM/yyyy' }}</td>
+        <td>{{ viaggio.ritorno | date:'dd/MM/yyyy' }}</td>
+        <td>{{ viaggio.prezzo | number:'1.2-2' }}</td>
+        <td>{{ viaggio.posti }}</td>
+        <td>{{ viaggio.categoria }}</td>
+        <td>
+          <span [ngClass]="'stato-' + viaggio.stato">
+            {{ viaggio.stato }}
+          </span>
+        </td>
+        <td>
+          <button (click)="modificaViaggio(viaggio)" class="btn-modifica">
+            ✏️ Modifica
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

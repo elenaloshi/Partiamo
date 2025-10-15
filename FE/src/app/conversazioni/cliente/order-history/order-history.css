@@ -1,0 +1,229 @@
+/* ===== CONTAINER PRINCIPALE ===== */
+.order-history-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* ===== HEADER ===== */
+  .history-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .page-title {
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .history-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  /* ===== MESSAGGI ===== */
+  .error-message {
+    background: #ffe6e6;
+    color: #d32f2f;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== NESSUN ORDINE ===== */
+  .empty-orders {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .empty-orders p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== LISTA ORDINI ===== */
+  .orders-list {
+    margin-bottom: 3rem;
+  }
+  
+  .orders-count {
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== CARD ORDINE ===== */
+  .order-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.15);
+  }
+  
+  /* ===== HEADER ORDINE ===== */
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+  }
+  
+  .order-number {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .order-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .order-status.spedito {
+    background: #fff3cd;
+    color: #856404;
+  }
+  
+  .order-status.consegnato {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  /* ===== DETTAGLI ORDINE ===== */
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .order-total {
+    font-size: 1.2rem;
+    color: #ff6b9d;
+  }
+  
+  .order-address,
+  .order-date {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .order-address strong,
+  .order-date strong {
+    color: #333;
+  }
+  
+  /* ===== LISTA PRODOTTI ACQUISTATI ===== */
+  .order-products {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .order-products strong {
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .products-list {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+  }
+  
+  .product-item {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    padding: 0.2rem 0;
+  }
+  
+  /* ===== PULSANTE PRIMARIO ===== */
+  .btn-primary {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+    
+    .order-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .order-number {
+      font-size: 1.2rem;
+    }
+    
+    .order-card {
+      padding: 1.5rem;
+    }
+    
+    .order-details {
+      gap: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .order-history-container {
+      padding: 1rem 0.5rem;
+    }
+    
+    .page-title {
+      font-size: 1.5rem;
+    }
+    
+    .order-card {
+      padding: 1rem;
+    }
+    
+    .order-total {
+      font-size: 1.1rem;
+    }
+    
+    .products-list {
+      padding-left: 0.5rem;
+    }
+    
+    .product-item {
+      font-size: 0.9rem;
+    }
+  }

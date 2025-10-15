@@ -1,0 +1,51 @@
+<p>adminorderlist works!</p>
+<div class="admin-container">
+    <div class="header">
+      <h1>📦 {{ titoloSelez }}</h1>
+      <button 
+        *ngIf="idUtente" 
+        (click)="tornaATuttePrenotazioni()" 
+        class="btn-torna">
+        ← Tutti gli ordini
+      </button>
+    </div>
+  
+    <table class="tabella">
+      <thead>
+        <tr>
+          <th>ID Ordine</th>
+          <th>ID Utente</th>
+          <th>Data Creazione</th>
+          <th>Indirizzo</th>
+          <th>Prezzo Totale</th>
+          <th>Stato</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prenotazione of prenotazioni">
+          <td>{{ prenotazione.id_prenotazione }}</td>
+          <td>{{ prenotazione.id_utente }}</td>
+          <td>{{ prenotazione.data_prenotazione }}</td>
+          <!--< td>{{ prenotazione.indirizzo }}</> -->
+          <td>€{{ prenotazione.prezzoTotale }}</td>
+          <!--<td>
+            <span [class]="ordine.stato === 'spedito' ? 'stato-spedito' : 'stato-consegnato'">
+              {{ ordine.stato }}
+            </span>
+          </td>
+          <td>
+            <button 
+              (click)="cambiaStato(ordine)"
+              [class]="ordine.stato === 'spedito' ? 'btn-consegna' : 'btn-spedito'">
+              {{ ordine.stato === 'spedito' ? 'Segna Consegnato' : 'Segna Spedito' }}
+            </button>
+          </td>-->
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="prenotazioni.length === 0" class="nessun-ordine">
+      Nessun ordine trovato
+    </div>
+  </div>

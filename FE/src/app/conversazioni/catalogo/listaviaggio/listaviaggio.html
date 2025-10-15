@@ -1,0 +1,32 @@
+<div class="product-list-container">
+  <h1 class="page-title">{{ titoloPagina }}</h1>
+  <p class="results-count">{{ viaggi.length }} viaggi trovati</p>
+
+  @if (viaggi.length === 0) {
+    <div class="no-products">
+      <p>💔 Nessun viaggio corrisponde ai filtri selezionati.</p>
+    </div>
+  } @else {
+    <div class="products-grid">
+      @for (viaggio of viaggi; track viaggio.id_viaggio) {
+        <div class="product-card" [routerLink]="['/viaggi', viaggio.id_viaggio]">
+          @if (isAdmin) {
+            <div class="admin-actions">
+              <button type="button" class="edit-button" (click)="modificaViaggio(viaggio, $event)">✏️ Modifica</button>
+            </div>
+          }
+          <img
+            class="product-image"
+            [src]="'assets/viaggi/' + viaggio.id_viaggio + '.jpg'"
+            [alt]="viaggio.titolo" />
+          <div class="product-content">
+            <h3 class="product-name">{{ viaggio.titolo }}</h3>
+            <p class="product-destination">{{ viaggio.destinazione }} • {{ viaggio.categoria }}</p>
+            <p class="product-dates">{{ viaggio.partenza }} → {{ viaggio.ritorno }}</p>
+            <div class="product-price">€{{ viaggio.prezzo | number:'1.0-0' }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,164 @@
+.admin-container {
+  max-width: 960px;
+  margin: 3rem auto;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 25px 60px rgba(235, 64, 123, 0.15);
+  border: 1px solid rgba(255, 107, 157, 0.15);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+  color: #c44569;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group-inline {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group-inline .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #3d3d4e;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(196, 69, 105, 0.25);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fdf9fb;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff6b9d;
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.15);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 107, 157, 0.08);
+  color: #c44569;
+  font-weight: 500;
+}
+
+.checkbox-label input {
+  width: auto;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.btn-crea,
+.btn-annulla {
+  padding: 0.95rem 2.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-crea {
+  background: linear-gradient(135deg, #ff7eb3, #ff4d75);
+  color: #fff;
+  box-shadow: 0 15px 35px rgba(255, 107, 157, 0.35);
+}
+
+.btn-crea:disabled {
+  background: linear-gradient(135deg, #cfcfd1, #b7b7ba);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-annulla {
+  background: #f2f2f5;
+  color: #585866;
+  border: 1px solid rgba(88, 88, 102, 0.15);
+}
+
+.btn-crea:hover:not(:disabled),
+.btn-annulla:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(255, 107, 157, 0.25);
+}
+
+.btn-annulla:hover {
+  box-shadow: 0 12px 24px rgba(88, 88, 102, 0.15);
+}
+
+@media (max-width: 900px) {
+  .admin-container {
+    padding: 2rem;
+  }
+
+  .form-group-inline {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-crea,
+  .btn-annulla {
+    width: 100%;
+  }
+}

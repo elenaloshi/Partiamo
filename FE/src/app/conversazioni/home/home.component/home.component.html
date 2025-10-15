@@ -1,0 +1,65 @@
+<div class="home-container">
+
+    <!-- HERO -->
+    <section class="hero">
+      @if (!utenteLoggato) {
+        <h1 class="hero-title">✨ Benvenutə su Partiamo</h1>
+        <p class="hero-subtitle">Scopri esperienze uniche e vivi il tuo prossimo viaggio.</p>
+      } @else if (isAdmin) {
+        <h1 class="hero-title">👷🏽‍♀️ Ciao {{ utenteLoggato.nome }}, pannello amministratore</h1>
+        <p class="hero-subtitle">Gestisci viaggi, prenotazioni e utenti dal menu admin.</p>
+      } @else {
+        <h1 class="hero-title">🙋🏽‍♀️ Bentornata {{ utenteLoggato.nome }}</h1>
+        <p class="hero-subtitle">Abbiamo selezionato i viaggi più in tendenza per te.</p>
+      }
+    </section>
+  
+    <!-- SEZIONE VIAGGI IN TENDENZA (pubblici + clienti) -->
+    @if (!utenteLoggato || utenteLoggato.ruolo === 'cliente') {
+      <section class="products-section">
+        <h2 class="section-title">🔥 Viaggi in tendenza</h2>
+  
+        @if (viaggiInTendenza.length === 0) {
+          <div class="no-products">
+            <p>Nessun viaggio in tendenza al momento, torna presto.</p>
+          </div>
+        } @else {
+          <div class="products-grid">
+            @for (viaggio of viaggiInTendenza; track viaggio.id_viaggio) {
+              <div class="product-card" [routerLink]="['/viaggi', viaggio.id_viaggio]">
+                <img
+                  class="product-image"
+                  [src]="'assets/viaggi/' + viaggio.id_viaggio + '.jpg'"
+                  [alt]="viaggio.titolo" />
+                <div class="product-content">
+                  <h3 class="product-name">{{ viaggio.titolo }}</h3>
+                  <p class="product-destination">{{ viaggio.destinazione }} • {{ viaggio.categoria }}</p>
+                  <div class="product-price">€{{ viaggio.prezzo | number:'1.0-0' }}</div>
+                  <p class="product-dates">{{ viaggio.partenza }} → {{ viaggio.ritorno }}</p>
+                </div>
+              </div>
+            }
+          </div>
+  
+          <div class="section-footer">
+            <a routerLink="/viaggi" class="view-all-link">
+              💕 Vedi tutti i viaggi →
+            </a>
+          </div>
+        }
+      </section>
+    }
+  
+    <!-- CTA PER AMMINISTRATORE -->
+    @if (isAdmin) {
+      <section class="admin-cta">
+        <h2>Strumenti amministratore</h2>
+        <div class="admin-actions">
+          <button routerLink="/admin/viaggi" class="admin-btn">Gestisci viaggi</button>
+          <button routerLink="/admin/prenotazioni" class="admin-btn">Prenotazioni</button>
+          <button routerLink="/admin/utenti" class="admin-btn">Utenti</button>
+        </div>
+      </section>
+    }
+  </div>
+  

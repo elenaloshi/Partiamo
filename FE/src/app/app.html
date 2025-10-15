@@ -1,0 +1,76 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1 class="app-title">
+      <a routerLink="/" class="btn-link">✈️ {{ title }}</a>
+    </h1>
+
+    <div *ngIf="!isAdmin" class="search-container">
+      <form class="search-form" (ngSubmit)="cercaViaggi()">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          placeholder="🔍 Cerca destinazioni..."
+          class="search-input">
+        <button type="submit" class="search-button">Cerca</button>
+      </form>
+    </div>
+
+    <div class="user-panel" *ngIf="utenteLoggato">
+      <span class="user-summary">Ciao, {{ utenteLoggato.nome }}</span>
+      <button type="button" class="logout-header" (click)="logout()">🚪 Logout</button>
+    </div>
+  </header>
+
+  <div class="app-content">
+    <nav class="sidebar">
+      <div class="menu-section">
+        <h3 class="menu-title">Menu</h3>
+
+        <div *ngIf="!isAdmin" class="menu-group">
+          <a routerLink="/" routerLinkActive="active" class="menu-item">🏠 Home</a>
+          <a routerLink="/viaggi" routerLinkActive="active" class="menu-item">🗺️ Catalogo viaggi</a>
+          <button type="button" class="menu-item btn-link" (click)="vaiACategoria('mare')">🌊 Mare</button>
+          <button type="button" class="menu-item btn-link" (click)="vaiACategoria('montagna')">🏔️ Montagna</button>
+          <button type="button" class="menu-item btn-link" (click)="vaiACategoria('citta')">🏙️ Città</button>
+          <button type="button" class="menu-item btn-link" (click)="vaiACategoria('avventura')">🧭 Avventura</button>
+        </div>
+
+        <div *ngIf="isAdmin" class="menu-group">
+          <a routerLink="/" routerLinkActive="active" class="menu-item">🏠 Dashboard</a>
+          <a routerLink="/admin/viaggi" routerLinkActive="active" class="menu-item">🛫 Gestione viaggi</a>
+          <a routerLink="/admin/prenotazioni" routerLinkActive="active" class="menu-item">📦 Prenotazioni</a>
+          <a routerLink="/admin/utenti" routerLinkActive="active" class="menu-item">👥 Utenti</a>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h3 class="menu-title">Account</h3>
+
+        <div *ngIf="!utenteLoggato" class="menu-group">
+          <a routerLink="/login" routerLinkActive="active" class="menu-item secondary">🔑 Login</a>
+          <a routerLink="/signup" routerLinkActive="active" class="menu-item secondary">📝 Registrati</a>
+        </div>
+
+        <div *ngIf="isCliente" class="menu-group">
+          <a routerLink="/order-history" routerLinkActive="active" class="menu-item secondary">📋 I miei ordini</a>
+          <a routerLink="/wishlist" routerLinkActive="active" class="menu-item secondary">❤️ Wishlist</a>
+          <a routerLink="/carrello" routerLinkActive="active" class="menu-item secondary">🛒 Carrello</a>
+          <button type="button" (click)="logout()" class="menu-item secondary logout-btn">🚪 Logout</button>
+        </div>
+
+        <div *ngIf="isAdmin" class="menu-group">
+          <button type="button" (click)="logout()" class="menu-item secondary logout-btn">🚪 Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; {{ title }} {{ currentYear }}. Tutti i diritti riservati.</p>
+  </footer>
+</div>

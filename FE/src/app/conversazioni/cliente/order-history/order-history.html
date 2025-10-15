@@ -1,0 +1,52 @@
+<div class="order-history-container">
+
+  <div class="history-header">
+    <h1 class="page-title">📋 Storico Ordini</h1>
+    <p class="history-subtitle">I tuoi ordini passati</p>
+  </div>
+
+  <div *ngIf="errore" class="error-message">
+    ❌ {{ errore }}
+  </div>
+
+  <div *ngIf="ordiniCompleti.length === 0 && !errore" class="empty-orders">
+    <p>📦 Non hai ancora effettuato ordini</p>
+    <a routerLink="/viaggi" class="btn-primary">Esplora i viaggi</a>
+  </div>
+
+  <div *ngIf="ordiniCompleti.length > 0" class="orders-list">
+    <p class="orders-count">
+      {{ ordiniCompleti.length }} ordine{{ ordiniCompleti.length > 1 ? 'i' : '' }} trovato{{ ordiniCompleti.length > 1 ? 'i' : '' }}
+    </p>
+
+    <div *ngFor="let ordine of ordiniCompleti" class="order-card">
+      <div class="order-header">
+        <h3 class="order-number">🛍️ Ordine #{{ ordine.prenotazione.id_prenotazione }}</h3>
+        <div class="order-status">
+          {{ ordine.prenotazione.num_persone }} persone
+        </div>
+      </div>
+
+      <div class="order-details">
+        <div class="order-total">
+          <strong>💰 Totale: €{{ ordine.prenotazione.prezzoTotale | number:'1.2-2' }}</strong>
+        </div>
+
+        <div class="order-date">
+          <strong>📅 Data:</strong> {{ ordine.prenotazione.data_prenotazione | date:'dd/MM/yyyy HH:mm' }}
+        </div>
+
+        <div class="order-products">
+          <strong>🛒 Viaggi prenotati:</strong>
+          <div class="products-list">
+            <div *ngFor="let item of ordine.items" class="product-item">
+              • {{ item.viaggio.destinazione }} ({{ item.ordineItem.quantita }}x) – €{{ item.viaggio.prezzo | number:'1.2-2' }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

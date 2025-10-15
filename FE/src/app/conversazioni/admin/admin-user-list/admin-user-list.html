@@ -1,0 +1,45 @@
+<p>admin-user-list works!</p>
+<div class="admin-container">
+    <h1>👥 Gestione Utenti</h1>
+  
+    <table class="tabella">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Cognome</th>
+          <th>Username</th>
+          <th>Data Nascita</th>
+          <th>Ruolo</th>
+          <th>Stato</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let utente of utenti">
+          <td>{{ utente.id_utente }}</td>
+          <td>{{ utente.nome }}</td>
+          <td>{{ utente.cognome }}</td>
+          <td>{{ utente.username }}</td>
+          <td>{{ utente.data_nascita | date:'dd/MM/yyyy' }}</td>
+          <td>{{ utente.ruolo }}</td>
+          <td>
+            <span [class]="utente.stato === 'attivo' ? 'stato-attivo' : 'stato-bloccato'">
+              {{ utente.stato }}
+            </span>
+          </td>
+          <td>
+            <button 
+              *ngIf="utente.ruolo !== 'amministratore'"
+              (click)="cambiaStato(utente)"
+              [class]="utente.stato === 'attivo' ? 'btn-blocca' : 'btn-sblocca'">
+              {{ utente.stato === 'attivo' ? 'Blocca' : 'Sblocca' }}
+            </button>
+            <button (click)="vediOrdini(utente)" class="btn-ordini">
+              📦 Ordini
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

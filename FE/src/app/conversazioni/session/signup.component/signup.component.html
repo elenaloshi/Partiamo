@@ -1,0 +1,89 @@
+<p>signup.component works!</p>
+<div class="form-container">
+  
+    <h2>✨ Crea il tuo account</h2>
+  
+    <form (ngSubmit)="signup()" #signupForm="ngForm">
+      
+      <!-- Nome -->
+      <input 
+        type="text" 
+        name="nome" 
+        [(ngModel)]="nuovoUtente.nome" 
+        placeholder="👤 Nome" 
+        required
+        minlength="2">
+      
+      <!-- Cognome -->
+      <input 
+        type="text" 
+        name="cognome" 
+        [(ngModel)]="nuovoUtente.cognome" 
+        placeholder="👥 Cognome" 
+        required
+        minlength="2">
+      
+      <!-- Username -->
+      <input 
+        type="text" 
+        name="username" 
+        [(ngModel)]="nuovoUtente.username" 
+        placeholder="🔤 Username" 
+        required
+        minlength="3">
+      
+      <!-- Email -->
+      <input 
+        type="email" 
+        name="email" 
+        [(ngModel)]="nuovoUtente.email" 
+        placeholder="📧 Email" 
+        required>
+      
+      <!-- Password con puntini rosa -->
+      <input 
+        type="password" 
+        name="password" 
+        [(ngModel)]="nuovoUtente.password" 
+        placeholder="🔒 Password" 
+        class="password-input" 
+        required
+        minlength="4">
+      
+      <!-- Data di nascita -->
+      <input 
+        type="date" 
+        name="data_nascita" 
+        [(ngModel)]="nuovoUtente.data_nascita" 
+        placeholder="📅 Data di nascita" 
+        required>
+  
+      <!-- Pulsante Pulisci Form -->
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          [disabled]="!signupForm.form.valid" 
+          [class.active]="signupForm.form.valid"
+          class="btn-primary">
+          🌸 Registrati
+        </button>
+        
+        <button 
+          type="button" 
+          (click)="clearForm()"
+          class="btn-secondary">
+          🗑️ Pulisci
+        </button>
+      </div>
+  
+      <!-- Messaggio di errore -->
+      <div class="errore" *ngIf="errore">⚠️ {{ errore }}</div>
+      
+    </form>
+  
+    <!-- Link login -->
+    <p class="login-link">
+      Hai già un account? <a routerLink="/login">💕 Accedi</a>
+    </p>
+    
+  </div>

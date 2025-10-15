@@ -1,0 +1,112 @@
+<div class="checkout-container">
+  <div class="checkout-header">
+    <h1 class="page-title">💳 Checkout</h1>
+    <p class="checkout-subtitle">Completa il tuo ordine</p>
+  </div>
+
+  <div *ngIf="messaggio" class="success-message">
+    ✅ {{ messaggio }}
+  </div>
+
+  <div *ngIf="errore" class="error-message">
+    ⚠️ {{ errore }}
+  </div>
+
+  <div class="checkout-content">
+
+    <div class="order-summary">
+      <h2 class="section-title">📋 Riepilogo Ordine</h2>
+
+          <div class="summary-items">
+            <div *ngFor="let item of carrelloItems" class="summary-item">
+              <div class="item-info">
+                <h4>{{ item.destinazione }}</h4>
+                <p>€{{ item.PU | number:'1.2-2' }}</p>
+                <p class="item-description">{{ item.descrizione }}</p>
+              </div>
+              <div class="item-quantity">
+                x{{ item.quantita }}
+              </div>
+              <div class="item-total">
+                €{{ (item.PU * item.quantita) | number:'1.2-2' }}
+              </div>
+            </div>
+          </div>
+
+      <div class="order-total">
+        <h3>Totale: €{{ totaleOrdine | number:'1.2-2' }}</h3>
+      </div>
+    </div>
+
+    <div class="order-form">
+      <h2 class="section-title">📦 Dati Ordine</h2>
+
+      <form (ngSubmit)="creaOrdine()" #checkoutForm="ngForm">
+
+        <div class="payment-section">
+          <h3>💳 Dati Carta di Credito</h3>
+
+          <div class="form-group">
+            <label for="carta">Numero Carta</label>
+            <input
+              type="text"
+              id="carta"
+              [(ngModel)]="numeroCartaCredito"
+              name="numeroCartaCredito"
+              required
+              maxlength="16"
+              class="form-control"
+              placeholder="1234 5678 9012 3456">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="scadenza">Scadenza</label>
+              <input
+                type="text"
+                id="scadenza"
+                [(ngModel)]="scadenzaCarta"
+                name="scadenzaCarta"
+                required
+                maxlength="4"
+                class="form-control"
+                placeholder="MMYY">
+            </div>
+
+            <div class="form-group half">
+              <label for="cvv">CVV</label>
+              <input
+                type="text"
+                id="cvv"
+                [(ngModel)]="cvv"
+                name="cvv"
+                required
+                maxlength="3"
+                class="form-control"
+                placeholder="123">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            (click)="tornaAlCarrello()"
+            class="btn-secondary">
+            ⬅🛒 Torna al Carrello
+          </button>
+
+          <button
+            type="submit"
+            [disabled]="!checkoutForm.form.valid || !carrelloItems.length"
+            class="btn-primary">
+            ✅ Crea Ordine
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

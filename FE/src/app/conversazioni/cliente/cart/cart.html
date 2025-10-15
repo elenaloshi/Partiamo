@@ -1,0 +1,91 @@
+<div class="cart-container">
+  
+    <!-- Header -->
+    <div class="cart-header">
+      <h1 class="page-title">🧳 I tuoi Viaggi</h1>
+    </div>
+  
+    <!-- Messaggio -->
+    <div *ngIf="messaggio" class="message">
+      {{ messaggio }}
+    </div>
+  
+    <!-- Carrello vuoto -->
+    <div *ngIf="carrelloItems.length === 0" class="empty-cart">
+      <p>💔 Il tuo carrello è vuoto</p>
+      <button (click)="continuaShopping()" class="btn-primary">
+        🧭 Esplora i viaggi
+      </button>
+    </div>
+  
+    <!-- Carrello con prodotti -->
+    <div *ngIf="carrelloItems.length > 0" class="cart-content">
+      
+      <!-- Lista prodotti -->
+      <div class="cart-items">
+        <div *ngFor="let item of carrelloItems" class="cart-item">
+
+          <img
+            *ngIf="item.immagine"
+            [src]="item.immagine"
+            [alt]="item.destinazione"
+            class="item-thumb">
+
+          <!-- Info viaggio -->
+          <div class="item-info">
+            <h3>{{ item.destinazione }}</h3>
+            <p class="item-description">{{ item.descrizione }}</p>
+            <p class="item-meta">ID viaggio: {{ item.id_viaggio }}</p>
+            <p>€{{ item.PU | number:'1.2-2' }} x {{ item.quantita }}</p>
+          </div>
+
+          <!-- Subtotale -->
+          <div class="item-total">
+            <strong>€{{ (item.PU * item.quantita) | number:'1.2-2' }}</strong>
+          </div>
+
+          <!-- Rimuovi -->
+          <button
+            (click)="rimuoviProdotto(item)"
+            class="btn-remove">
+            Rimuovi
+          </button>
+
+        </div>
+      </div>
+  
+      <!-- Totale e pulsanti -->
+      <div class="cart-footer">
+        
+        <!-- Totale -->
+        <div class="total-section">
+          <h2>Totale: €{{ totaleCarrello | number:'1.2-2' }}</h2>
+        </div>
+  
+        <!-- Pulsanti -->
+        <div class="cart-actions">
+          <button 
+            (click)="procediAlCheckout()"
+            [disabled]="carrelloItems.length === 0"
+            class="btn-primary">
+            💳 Procedi al Checkout
+          </button>
+          
+          <button 
+            (click)="continuaShopping()"
+            class="btn-secondary">
+            🧭 Continua a esplorare
+          </button>
+          
+          <button 
+            (click)="svuotaCarrello()"
+            class="btn-danger">
+            🗑️ Svuota Carrello
+          </button>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
